@@ -1,0 +1,21 @@
+{
+    "name": "rizki/web",
+    "description": "ini adalah project web",
+    "type": "project",
+    "license": "GPL",
+    "autoload": {
+        "psr-4": {
+            "Rizki\\Web\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "rizkiyusra",
+            "email": "12050113426@students.uin-suska.ac.id"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "nesbot/carbon": "^2.58"
+    }
+}
