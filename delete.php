@@ -6,18 +6,21 @@ include_once 'koneksi.php';
 
 $delete = $_POST['delete'];
 
-$statement = $connection -> prepare("DELETE FROM `buku` WHERE `buku`.`isbn` = '$delete'");
-$statement -> execute();
-$response =[];
+$check = $connection -> query("SELECT * FROM `buku` WHERE `isbn` = '$delete'");
+$check -> setFetchMode(PDO::FETCH_ASSOC);
+$result = $check -> fetchAll();
 
-if ($statement) {
+if (count($result) > 0) {
+    $statement = $connection -> prepare("DELETE FROM `buku` WHERE `buku`.`isbn` = '$delete'");
+    $statement -> execute();
+    $response =[];
     $response['status']='succcess';
     $response['message']='Berhasil menghapus data';
 }
 
 else {
     $response['status']='failed';
-    $response['message']='Gagal menghapus data';
+    $response['message']='Data buku tidak ditemukan';
 }
 
 header('Content-Type: application/json');

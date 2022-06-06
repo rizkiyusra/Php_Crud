@@ -12,14 +12,18 @@ $tanggal = $_POST['tanggal'];
 $abstrak = $_POST['abstrak'];
 $update = $_POST['update'];
 
-$statement = $connection -> prepare("UPDATE `buku` SET `isbn` = '$isbn', `judul` = '$judul', `pengarang` = '$pengarang', `jumlah` = '$jumlah', `tanggal` = '$tanggal', `abstrak` = '$abstrak' WHERE `buku`.`isbn` = '$update'");
-
-$statement -> execute();
+$check = $connection -> query("SELECT * FROM `buku` WHERE `isbn` = '$update'");
+$check -> setFetchMode(PDO::FETCH_ASSOC);
+$result = $check -> fetchAll();
 $response =[];
 
-if ($statement) {
+$statement = $connection -> prepare("UPDATE `buku` SET `isbn` = '$isbn', `judul` = '$judul', `pengarang` = '$pengarang', `jumlah` = '$jumlah', `tanggal` = '$tanggal', `abstrak` = '$abstrak' WHERE `buku`.`isbn` = '$update'");
+$statement -> execute();
+
+if (count($result) > 0) {
     $response['status']='succcess';
     $response['message']='Berhasil update data';
+    $response['data'] = $result;
 }
 
 else {
