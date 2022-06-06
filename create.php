@@ -1,5 +1,6 @@
 <?php
 include_once 'koneksi.php';
+
 /**
  * @var $connection PDO
  */
@@ -16,7 +17,7 @@ $result = $connection -> exec($query);
 $response =[];
 
 if ($result) {
-    $response['status']='succcess';
+    $response['status']='success';
     $response['message']='Berhasil mengisi data buku';
 }
 

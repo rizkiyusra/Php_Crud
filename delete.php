@@ -1,5 +1,6 @@
 <?php
 include_once 'koneksi.php';
+
 /**
  * @var $connection PDO
  */
@@ -14,7 +15,7 @@ $response =[];
 if (count($result) > 0) {
     $statement = $connection -> prepare("DELETE FROM `buku` WHERE `buku`.`isbn` = '$delete'");
     $statement -> execute();
-    $response['status']='succcess';
+    $response['status']='success';
     $response['message']='Berhasil menghapus data';
 }
 

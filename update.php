@@ -1,5 +1,6 @@
 <?php
 include_once 'koneksi.php';
+
 /**
  * @var $connection PDO
  */
@@ -21,7 +22,7 @@ $result = $check -> fetchAll();
 $response =[];
 
 if (count($result) > 0) {
-    $response['status']='succcess';
+    $response['status']='success';
     $response['message']='Berhasil update data';
     $response['data'] = $result;
 }
