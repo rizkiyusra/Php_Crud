@@ -9,11 +9,11 @@ $delete = $_POST['delete'];
 $check = $connection -> query("SELECT * FROM `buku` WHERE `isbn` = '$delete'");
 $check -> setFetchMode(PDO::FETCH_ASSOC);
 $result = $check -> fetchAll();
+$response =[];
 
 if (count($result) > 0) {
     $statement = $connection -> prepare("DELETE FROM `buku` WHERE `buku`.`isbn` = '$delete'");
     $statement -> execute();
-    $response =[];
     $response['status']='succcess';
     $response['message']='Berhasil menghapus data';
 }
